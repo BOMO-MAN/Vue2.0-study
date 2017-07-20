@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue.js 小案例</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		html {
+			font-size: 14px;
+			font-family: Ubuntu, simHei, sans-serif;
+			font-weight: 400;
+		}
+
+		body {
+			font-size: 1rem;
+		}
+
+		table,
+		td,
+		th {
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
+		table {
+			width: 100%;
+		}
+
+		td,
+		th {
+			border: 1px solid #bcbcbc;
+			padding: 5px 10px;
+		}
+		
+		th {
+			background: #42b983;
+			font-size: 1.2rem;
+			font-weight: 400;
+			color: #fff;
+			cursor: pointer;
+		}
+		
+		tr: nth-of-type(odd) {
+			background: #fff;
+		}
+
+		tr: nth-of-type(even) {
+			background: #eee;
+		}
+
+		fieldset {
+			border: 1px solid #bcbcbc;
+			padding: 20px;
+		}
+
+		input {
+			outline: none;
+		}
+
+		input[type=text] {
+			border: 1px solid #ccc;
+			padding: .5rem .3rem;
+		}
+
+		input[type=text]:focus {
+			border-color: #42b983
+		}
+
+		button {
+			outline: none;
+			padding: 5px 8px;
+			color: #fff;
+			border: 1px solid #bcbcbc;
+			border-radius: 4px;
+			background-color: #009a61;
+		}
+
+		button:hover {
+			opacity: .8;
+			cursor: pointer;
+		}
+
+		#app {
+			margin: 0 auto;
+			max-width: 640px;
+		}
+
+		.form-group {
+			margin: 10px;
+		}
+
+		.form-group>label {
+			display: inline-block;
+			width: 10rem;
+			text-align: right;
+		}
+
+		.form-group > input,
+		.form-group > select {
+			display: inline-block;
+			height: 2.5rem;
+			line-height: 2.5rem;
+		}
+
+		.text-align {
+			text-align: center;
+		}
+		
+
+
+
+
+
+
+	</style>
+</head>
+<body>
+	<div id="app">
+		<fieldset>
+			<legend>
+				Great New Person
+			</legend>
+			<div class="form-group">
+				<label>Name：</label>
+				<input type="text" v-model="newPerson.name">
+			</div>
+			<div class="form-group">
+				<label for="">Age:</label>
+				<input type="text" v-model="newPerson.age">
+			</div>
+			<div class="form-group">
+				<label for="">Sex:</label>
+					<select v-model="newPerson.sex">
+					<option value="Male">Male</option>
+					<option value="Female">Female</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for=""></label>
+				<button @click = "createPerson">Create</button>
+			</div>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th  @click = "sort">Age</th>
+						<th>Sex</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for='person in people'>
+						<td>{{ person.name }}</td>
+						<td>{{ person.age }}</td>
+						<td>{{ person.sex }}</td>
+						<td v-bind: class="text-align"><button @click="deletePerson(index)">Delete</button></td>
+					</tr>
+				</tbody>
+				<tfoot></tfoot>
+			</table>
+		</fieldset>
+	</div>
+	<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>
+	<script>
+		var vm = new Vue({
+			el: '#app',
+			data: {
+				//  用v-model 绑定表单数据
+				newPerson: {
+					name: '',
+					age: 0,
+					sex: 'Male'
+				},
+
+				//  v-for   person in people 遍历数组 
+				people: [
+					{
+						name: 'jack',
+						age: 18,
+						sex: 'Male'
+					},
+					{
+						name: 'Bill',
+						age: 25,
+						sex: 'Male'
+					},
+					{
+						name: 'Tony',
+						age: 26,
+						sex: 'Male'
+					},
+					{
+						name: 'Andy',
+						age: 22,
+						sex: 'Female'
+					}
+				]
+			},
+			//  this 代表当前vue 实例
+			methods: {
+				createPerson: function(){
+					console.log('aaa')
+					//  在数组后面新增一个 item
+					this.people.push(this.newPerson)
+					//  重置 newPerson 复位
+					this.newPerson = {name:'',age:0,sex:'Male'}
+				},
+
+				deletePerson: function(index){
+					this.people.splice(index,1)
+				},
+
+				sort: function(){
+					console.log('ok1')
+
+					//  二维数组下 用sort 进行排序
+					this.people.sort(function(a,b){
+						return a.age-b.age
+					})
+					console.log('ok2')
+				}
+			}
+		})
+	</script>
+</body>
+</html>
