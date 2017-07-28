@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>hello world</title>
+</head>
+<body>
+	<!-- Vue -->
+	<div id="app">
+		{{ message }}
+	</div>
+	<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>
+	<script>
+		// var vm = new Vue({
+		// 	el: '#app',
+		// 	data: {
+		// 		message: 'hello world'
+		// 	}
+		// })
+
+		//  Model
+		var data = {
+			message: 'hello world'
+		}
+
+		//  ViewModel
+
+		new Vue({
+			el: '#app',
+			data: data
+		})
+
+
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表单控件绑定v-model</title>
+</head>
+<body>
+	<h2>文本</h2>
+	<div id="example-1">
+		<input  type="text" v-model="message" placeholder="edit me">
+		<p>Message: {{ message }}</p>
+	</div>
+
+	<h2>多行文本</h2>	
+	<div id="example-2">
+		<span>Multline message is: </span>
+		<p style="white-space: pre-line"> {{ message }}</p>
+		<br>
+		<textarea name="" id="" cols="30" rows="10" placeholder="edit Multline" v-model="message"></textarea>
+	</div>
+
+	<!-- <h2>复选框</h2> -->
+<!-- 	<input type="checkbox" id="checkbox" v-model="checked">
+	<label for="checkbox">{{ checked }}</label> -->
+	
+
+	<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>
+	<script>
+		// var vm = new Vue({
+		// 	el: '#checkbox'
+		// 	data: {
+		// 		checked: '555'
+		// 	}
+		// })
+	  var vm = new Vue({
+	  	el: '#example-2',
+	  	data: {
+	  		message: '多行文本'
+	  	}
+	  })
+
+		var vm = new Vue({
+			el: '#example-1',
+			data: {
+				message: 'hello v-model'
+			}
+		})
+	</script>
+</body>
+</html>

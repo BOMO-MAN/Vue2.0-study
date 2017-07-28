@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>component 组件</title>
+</head>
+<body>
+	<h2>全局注册</h2>
+	<div id="example-1">
+		<my-first-component></my-first-component>
+	</div>
+
+	<h2>局部注册</h2>
+	<div id="example-2">
+		<my-second-component></my-second-component>
+	</div>
+
+	<h2>data 必须是函数</h2>
+	<h4>引用的是同一个data对象</h4>
+	<div id="example-3">
+		<simple-counter></simple-counter>
+		<simple-counter></simple-counter>
+		<simple-counter></simple-counter>
+	</div>
+
+	<h4>独立的data函数</h4>
+	<div id="example-4">
+		<simple-counter-2></simple-counter-2>
+		<simple-counter-2></simple-counter-2>
+		<simple-counter-2></simple-counter-2>
+	</div>
+	<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>	
+	<script>
+
+		Vue.component('simple-counter-2',{
+			template: '<button v-on:click="counter+=1">{{ counter }}</button>',
+			data: function(){
+				return {
+					counter: 0
+				}
+			}
+		})
+
+		var vm = new Vue({
+			el: '#example-4'
+		})
+
+		// data 必须是函数
+		var data = { counter: 0}
+		Vue.component('simple-counter',{
+			template:' <button v-on:click="counter += 1">{{ counter }}</button>',
+			data: function(){
+				return data
+			}
+		})
+
+		var vm = new Vue({
+			el: '#example-3'
+		})
+		// 注册
+		Vue.component('my-first-component',{
+			template: '<div>This is my first component</div>'
+		})
+
+		//  创建根实例
+		var vm = new Vue({
+			el: '#example-1'
+		})
+
+		var Child = {
+			template: '<div>this is my second component</div>'
+		}
+		var vm = new Vue({
+			el: '#example-2',
+			//  只在父模板中可用
+			components: {
+				'my-second-component': Child
+			}
+		})
+
+
+
+	</script>
+</body>
+</html>

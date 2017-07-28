@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>双向绑定</title>
+</head>
+<body>	
+		<!--  Vue -->
+		<div id="app">
+			<p> {{ message }}</p>
+			<input type="text" v-model = "message">
+		</div>
+		<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>
+		<script>
+			// Model 
+			var data = {
+				message: 'hello Vue.js'
+			}
+
+			// ViewModel
+			new Vue({
+				el: '#app',
+				data: data
+			})
+		</script>
+
+</body>
+</html>

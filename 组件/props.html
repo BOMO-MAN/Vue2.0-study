@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>props</title>
+</head>
+<body>
+	<h2>子组件声明props</h2>
+	<div id="app1">
+		<child message="hello"></child>
+	</div>
+	<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>
+	<script>
+		Vue.component('child',{
+			// 声明props
+			props: ['message'],
+			template: '<a>{{ message }}<a>'
+		})
+
+		var vm = new Vue({
+			el: '#app1'
+		})
+	</script>	
+	
+</body>
+</html>

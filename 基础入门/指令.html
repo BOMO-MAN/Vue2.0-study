@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>常用指令</title>
+</head>
+<body>
+		<!--  Vue -->
+		<p>v-if</p>
+		<div id="app1">
+			<p> {{ message }}</p>
+			<h1> hello world</h1>
+			<h1 v-if="yes">Yes!</h1>
+			<h1 v-if="no">No!</h1>
+			<h1 v-if='age>=25'>Age: {{ age }}</h1>
+			<h1 v-if="name.indexOf('xiaoliang'>=0) ">Name: {{ name }}</h1>
+			<input type="text" v-model = "message">
+		</div>
+
+		<p>v-show</p>
+		<div id="app2">
+			<h1> hello world</h1>
+			<h1 v-show="yes">Yes!</h1>
+			<h1 v-show="no">No!</h1>
+			<h1 v-show='age>=25'>Age: {{ age }}</h1>
+			<h1 v-show="name.indexOf('xiaoliang'>=0) ">Name: {{ name }}</h1>
+		</div>
+
+		<p>v-else</p>
+		<div id="app3">
+			<h1 v-if='age>=28'>Age: {{ age }}</h1>
+			<h1 v-else>Name: {{ name }}</h1>
+
+			<h1 v-show="name.indexOf('xiaoliang')>=0">Name: {{ name }}</h1>
+			<h1 v-else>Sex: {{ sex }}</h1>
+		</div>
+		<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>
+		<script>
+			// Model 
+			// var data = {
+			// 	message: 'hello Vue.js'
+			// }
+
+			// ViewModel
+			var vm = new Vue({
+				el: '#app1',
+				data: {
+					yes: true,
+					no: false,
+					age: 22,
+					name: 'xiaoliang'
+				}
+			})
+
+			var vm = new Vue({
+				el: '#app2',
+				data: {
+					yes: true,
+					no: false,
+					age: 28,
+					name: 'xiaoliang'
+				}
+			})
+
+			var vm = new Vue({
+				el: '#app3',
+				data: {
+					age: 22,
+					name: 'xiaolong',
+					sex: 'Male'
+
+				}
+			})
+		</script>
+</body>
+</html>

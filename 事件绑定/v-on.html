@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>v-on</title>
+</head>
+<body>
+	<h2>事件监听</h2>
+	<p>v-on指令监听DOM事件触发的一些JavaScript代码</p>
+	<div id="example-1">
+		<button v-on:click="counter+=1">增加</button>
+		<p>这个按钮被点击了 {{ counter }} 次。</p>
+	</div>
+
+	<h2>方法事件处理器</h2>
+	<p>许多事件处理的逻辑都很复杂，所以直接把JavaScript代码写在v-on指令是不可行的，因此需要接受一个定义的方法来调用</p>
+	<div id="example-2">
+		<button v-on:click="Greet">Greet</button>
+	</div>
+
+	<h2>内联处理方法</h2>
+	<p>除了直接绑定到一方法还可以内联JavaScript语句</p>
+	<div id="example-3">
+		<button v-on:click="say('hi')">say hi</button>
+		<button v-on:click="say('what')"> say what</button>
+	</div>
+
+	<div id="example-4">
+		<button v-on:click="warn(f'orm connot submitted',$event)">Submit</button>
+	</div>
+
+	<p>.stop</p>
+	<a href="" v-on:click.stop="soThis"></a>
+	<p>.prevent</p>
+	<form action="" v-on:click.prevent="onSubmit"></form>
+	<p>.capture</p>
+	<div v-on:click.capture="doThis"></div>
+	<p>.self</p>
+	<div v-on:click.self="doThis">
+		<ul>
+			<li>111</li>
+		</ul>
+	</div>
+	<p>.once</p>
+	<div v-on:click.once="doThis"></div>
+
+	<p>v-on:click.stop.prevent="doThis"</p>
+
+	<h2>键值修饰符</h2>
+	<input type="text" v-on:click.keyCode.13="submit" placeholder="v-on:click.enter='submit'">
+
+	<script src="http://apps.bdimg.com/libs/vue/1.0.14/vue.js"></script>
+	<script>
+		var vm = new Vue({
+			el: '#example-4',
+			data: {
+
+			},
+			methods: {
+				warn: function(message,event){
+					if(event) 
+					event.preventDefault()
+					
+					alert(message)
+				}
+			}
+		})
+		var vm = new Vue({
+			el: '#example-3',
+			data: {
+				say: function(msg){
+					alert(msg)
+				}
+			}
+		})
+		var vm = new Vue({
+			el: '#example-2',
+			data: {
+				name: 'liangshuhan'
+			},
+			methods: {
+				Greet: function(event){
+					alert('Hello'　+' ' + this.name)
+
+					if(event){
+						alert(event.target.tagName)
+					}
+				}
+			}
+		})
+		var vm = new Vue({
+			el: '#example-1',
+			data: {
+				counter: 0
+			}
+		})
+	</script>
+</body>
+</html>
